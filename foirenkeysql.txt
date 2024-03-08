@@ -1,0 +1,115 @@
+mysql> use june2023;
+Database changed
+mysql> create table player(id int(10)primary key,name varchar(100),score varchar(100)not null,city varchar(100)not null);
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> desc player;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | NO   | PRI | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| score | varchar(100) | NO   |     | NULL    |       |
+| city  | varchar(100) | NO   |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into player values(1,'rupesh','250','satara');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into player values(2,'ganesh','100','pune');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into player values(3,'dinesh','180','kalyan');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from player;
++----+--------+-------+--------+
+| id | name   | score | city   |
++----+--------+-------+--------+
+|  1 | rupesh | 250   | satara |
+|  2 | ganesh | 100   | pune   |
+|  3 | dinesh | 180   | kalyan |
++----+--------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> create table student(sid int(10)primary key,sname varchar(100),scity varchar(100),foreign key(id) references player(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table student(sid int(10)primary key,sname varchar(100),scity varchar(100),id int not null,foreign key(id) references player(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table student(sid int(10)primary key,sname varchar(100),scity varchar(100),id int(10),foreign key(id) references player(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table student(sid int(10)primary key,sname varchar(100),scity varchar(100),id int(10),foreign key(id) references player(id));
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> create table sttudent(sid int(10)primary key,sname varchar(100),scity varchar(100),id int(10),foreign key(id) references player(id));
+Query OK, 0 rows affected, 2 warnings (0.08 sec)
+
+mysql> desc sttudent;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| sid   | int          | NO   | PRI | NULL    |       |
+| sname | varchar(100) | YES  |     | NULL    |       |
+| scity | varchar(100) | YES  |     | NULL    |       |
+| id    | int          | YES  | MUL | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into sttudent(1,'parth','latur');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,'parth','latur')' at line 1
+mysql> insert into sttudent(1,'rupesh','satara',1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,'rupesh','satara',1)' at line 1
+mysql> insert into sttudent values(1,'rupesh','satara',1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into sttudent values(2,'ganesh','latur',2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sttudent;
++-----+--------+--------+------+
+| sid | sname  | scity  | id   |
++-----+--------+--------+------+
+|   1 | rupesh | satara |    1 |
+|   2 | ganesh | latur  |    2 |
++-----+--------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into sttudent values(3,'ganesh','ramapur',7);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`june2023`.`sttudent`, CONSTRAINT `sttudent_ibfk_1` FOREIGN KEY (`id`) REFERENCES `player` (`id`))
+mysql> insert into sttudent values(3,'rakesh','pune',3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from sttudent;
++-----+--------+--------+------+
+| sid | sname  | scity  | id   |
++-----+--------+--------+------+
+|   1 | rupesh | satara |    1 |
+|   2 | ganesh | latur  |    2 |
+|   3 | rakesh | pune   |    3 |
++-----+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> update sttudent set id=2 where id=2;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update sttudent set id=4 where id=2;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`june2023`.`sttudent`, CONSTRAINT `sttudent_ibfk_1` FOREIGN KEY (`id`) REFERENCES `player` (`id`))
+mysql> update sttudent set id=1 where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from sttudent;
++-----+--------+--------+------+
+| sid | sname  | scity  | id   |
++-----+--------+--------+------+
+|   1 | rupesh | satara |    1 |
+|   2 | ganesh | latur  |    1 |
+|   3 | rakesh | pune   |    3 |
++-----+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> delete table student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student' at line 1
+mysql> drop table student;
+Query OK, 0 rows affected (0.15 sec)

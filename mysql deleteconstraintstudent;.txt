@@ -1,0 +1,132 @@
+mysql> drop table student;
+ERROR 1046 (3D000): No database selected
+mysql> use june2023;
+Database changed
+mysql> drop table student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> drop table course;
+ERROR 1051 (42S02): Unknown table 'june2023.course'
+mysql> create table course(cid int(10) primary key auto_increment,name varchar(200),fees int(10));
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> create table student(sid int(10) primary key,sname varchar(100),scont int(10),cid int(10),foreign key(cid) references course(cid));
+Query OK, 0 rows affected, 3 warnings (0.07 sec)
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| sid   | int          | NO   | PRI | NULL    |       |
+| sname | varchar(100) | YES  |     | NULL    |       |
+| scont | int          | YES  |     | NULL    |       |
+| cid   | int          | YES  | MUL | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> desc course;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| cid   | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(200) | YES  |     | NULL    |                |
+| fees  | int          | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> create table student(sid int(10) primary key,sname varchar(100),scont int(10),cid int(10),foreign key(cid) references course(cid)on delete set null);
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(sid int(10) primary key,sname varchar(100),scont int(10),cid int(10),foreign key(cid) references course(cid)on delete set null);
+
+Query OK, 0 rows affected, 3 warnings (0.08 sec)
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| sid   | int          | NO   | PRI | NULL    |       |
+| sname | varchar(100) | YES  |     | NULL    |       |
+| scont | int          | YES  |     | NULL    |       |
+| cid   | int          | YES  | MUL | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc course;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| cid   | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(200) | YES  |     | NULL    |                |
+| fees  | int          | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into course values(1,'java',30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values(1,'php',30000);
+ERROR 1062 (23000): Duplicate entry '1' for key 'course.PRIMARY'
+mysql> insert into course values(2,'php',30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values(3,'c++',30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from course;
++-----+------+-------+
+| cid | name | fees  |
++-----+------+-------+
+|   1 | java | 30000 |
+|   2 | php  | 30000 |
+|   3 | c++  | 30000 |
++-----+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(1,'shyam',94454536,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(2,'mayur',94434536,3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(3,'raj',98434536,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(4,'yash',90434536,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(5,'yadhnya',88434536,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++-----+---------+----------+------+
+| sid | sname   | scont    | cid  |
++-----+---------+----------+------+
+|   1 | shyam   | 94454536 |    1 |
+|   2 | mayur   | 94434536 |    3 |
+|   3 | raj     | 98434536 |    1 |
+|   4 | yash    | 90434536 |    2 |
+|   5 | yadhnya | 88434536 |    2 |
++-----+---------+----------+------+
+5 rows in set (0.00 sec)
+
+mysql> delete from course where cid=3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++-----+---------+----------+------+
+| sid | sname   | scont    | cid  |
++-----+---------+----------+------+
+|   1 | shyam   | 94454536 |    1 |
+|   2 | mayur   | 94434536 | NULL |
+|   3 | raj     | 98434536 |    1 |
+|   4 | yash    | 90434536 |    2 |
+|   5 | yadhnya | 88434536 |    2 |
++-----+---------+----------+------+
+5 rows in set (0.00 sec)
+
+mysql>

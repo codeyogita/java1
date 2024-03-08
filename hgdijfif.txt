@@ -1,0 +1,34 @@
+
+System.out.println();
+----------------------------------------
+System is Class 
+out is Static ref
+println is Overloaded method for PrintStream class
+
+
+class PrintStream{
+
+    public int println(int x){
+      newLine();
+      return x;
+  }
+ public String  println(String x){
+      newLine();
+      return x;
+  }
+ public int  printf(int x){
+      return x;
+  }
+public String  printf(String x){
+      return x;
+  }
+}
+
+class System{
+
+ static  PrintStream out = new PrintStream(); // static ref
+   
+}
+
+System.out.println(5); // 
+

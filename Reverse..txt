@@ -1,0 +1,21 @@
+import java.util.*;
+public class.Reverse
+{
+  public static main void(String x[])
+{
+ Scanner sc=new Scanner(system.in);
+
+ int rev=0,rem,no;
+ System.out.println("Enter the no"+no);
+ no=sc.nextInt();
+
+
+  while(no!=0)
+{
+   rem=no%10;
+   no=no/10;
+   rev=rev*10+rem;
+}
+System.out.println("NO iS "+rev);
+}
+}

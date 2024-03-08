@@ -1,0 +1,29 @@
+for Each use in 1.5 and 1.8 vesion:-
+int 1.5 version we can fetch the data by using for each 
+vector v=new vector();
+v.add(100);
+v.add(200);
+v.add(300);
+
+for(Object:
+
+
+
+
+
+
+
+
+
+
+
+Enumration way to fetch data:-
+
+here we have to need  write the Enumeration syntax i.e,
+for vector and its object we write ,
+Enumeration enm = v.element();
+while(enm.hasMoreElement())
+{
+  Object obj=enm.nextElement();
+}
+S.o.S(obj)

@@ -1,0 +1,116 @@
+mysql> use demo;
+Database changed
+mysql> create table hostel(id int(10)primary key auto_increment,name varchar(100),city varchar(100));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> create table girls(rno int(10)primary key auto_increment,name varchar(100),fees int(20),id int(10),foreign key(id) references hostle(id));
+ERROR 1824 (HY000): Failed to open the referenced table 'hostle'
+mysql> create table girls(rno int(10)primary key auto_increment,name varchar(100),fees int(20),id int(10),foreign key(id) references hostel(id));
+Query OK, 0 rows affected, 3 warnings (0.05 sec)
+
+mysql> create table Shree(id int(10)primary key auto_increment,name varchar(100),fees int(200),id int(10),foreign key(id) references hostel(id)on update cas
+cade);
+ERROR 1060 (42S21): Duplicate column name 'id'
+mysql> create table Shree(sid int(10)primary key auto_increment,name varchar(100),fees int(200),id int(10),foreign key(id) references hostel(id)on update cascade);
+Query OK, 0 rows affected, 3 warnings (0.05 sec)
+
+mysql> desc shree;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| sid   | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(100) | YES  |     | NULL    |                |
+| fees  | int          | YES  |     | NULL    |                |
+| id    | int          | YES  | MUL | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> insert into hostel values(1,'raj','pune');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into hostel values(0,'rahul','rahur');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into hostel values(0,'yogita','delhi');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into hostel values(0,'priya','dadar');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from hostel;
++----+--------+-------+
+| id | name   | city  |
++----+--------+-------+
+|  1 | raj    | pune  |
+|  2 | rahul  | rahur |
+|  3 | yogita | delhi |
+|  4 | priya  | dadar |
++----+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into shree values(0,'sahil',800,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into shree values(0,'sayali',500,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shree values(0,'riya',800,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shree values(0,'reyansh',1000,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shree values(0,'yashika',800,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shree values(0,'shalini',500,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from shree;
++-----+---------+------+------+
+| sid | name    | fees | id   |
++-----+---------+------+------+
+|   1 | sahil   |  800 |    2 |
+|   2 | sayali  |  500 |    3 |
+|   3 | riya    |  800 |    1 |
+|   4 | reyansh | 1000 |    2 |
+|   5 | yashika |  800 |    2 |
+|   6 | shalini |  500 |    3 |
++-----+---------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> update hostel set id=7 where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shree;
++-----+---------+------+------+
+| sid | name    | fees | id   |
++-----+---------+------+------+
+|   1 | sahil   |  800 |    2 |
+|   2 | sayali  |  500 |    3 |
+|   3 | riya    |  800 |    7 |
+|   4 | reyansh | 1000 |    2 |
+|   5 | yashika |  800 |    2 |
+|   6 | shalini |  500 |    3 |
++-----+---------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> update hostel set id=10 where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shree;
++-----+---------+------+------+
+| sid | name    | fees | id   |
++-----+---------+------+------+
+|   1 | sahil   |  800 |   10 |
+|   2 | sayali  |  500 |    3 |
+|   3 | riya    |  800 |    7 |
+|   4 | reyansh | 1000 |   10 |
+|   5 | yashika |  800 |   10 |
+|   6 | shalini |  500 |    3 |
++-----+---------+------+------+
+6 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,31 @@
+<section>
+        <section class="nav1">
+        <div class="head">
+            <h2>COMPANY SECURITY</h2>
+        </div>
+
+        <div class="d1">
+           <div id="b2"></div>
+           <div id="b2"></div>
+           <div id="b2"></div>
+        </div>
+        </section>
+        
+         <div class="Dolor">
+            <div class="Bor">
+                <div><img src="/img/th2.jpeg" alt="not found"></div>
+                <div>
+                    <h6>Dolor Fit Bor</h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et
+                    </p>
+                </div>
+                one
+            </div>
+                one
+            </div>
+            <div>
+                secound</div>
+            <div>third</div> 
+
+         </div> 
+     </section> 

@@ -1,0 +1,141 @@
+mysql> create database june2023;
+Query OK, 1 row affected (0.01 sec)
+
+______________________________________________
+
+
+mysql> use june2023;
+Database changed
+mysql>
+
+_____________________________________________
+
+
+
+mysql> use june2023;
+Database changed
+mysql> create table june(id int (5),name varchar(100),email varchar());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+mysql> create table june(id int (5),name varchar(100),email varchar(100));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> desc june;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | YES  |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| email | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+1 row in set (0.00 sec)
+
+mysql> desc june;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | YES  |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| email | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table june modify colume name varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(50)' at line 1
+mysql> alter table june modify colume name varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(50)' at line 1
+mysql> alter table june rename column name to sname;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc june;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | YES  |     | NULL    |       |
+| sname | varchar(100) | YES  |     | NULL    |       |                                                              //drop table : is for the delete the table (all details &all );
+| email | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+                                                             //turncate table :this is use for delete the information or data present     
+3 rows in set (0.00 sec)                                                                                            //in table only this data is deleted;
+
+mysql> alter table june add column contact varchar(100);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc june;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | YES  |     | NULL    |       |
+| sname   | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
+| contact | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> drop table june where column id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where column id' at line 1
+mysql> drop table june where column id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where column id' at line 1
+mysql>
+
+
+mysql> select * from student;
++-------+------+----------+-------+
+| sname | sid  | Saddress | grade |
++-------+------+----------+-------+
+| ram   |    1 | pune     | B     |
+| sita  |   11 | banner   | A     |
+| lucky |   22 | mumbai   | A     |
+| radha |   11 | bhopal   | C     |
+| sham  |    2 | manpa    | A     |
++-------+------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select name from saddress;
+ERROR 1146 (42S02): Table 'june2023.saddress' doesn't exist
+mysql> select name from student;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select sname from student;
++-------+
+| sname |
++-------+
+| ram   |
+| sita  |
+| lucky |
+| radha |
+| sham  |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> select sid from student;
++------+
+| sid  |
++------+
+|    1 |
+|   11 |
+|   22 |
+|   11 |
+|    2 |
++------+
+5 rows in set (0.00 sec)
+
+mysql> select sid from student;
++------+
+| sid  |
++------+
+|    1 |
+|   11 |
+|   22 |
+|   11 |
+|    2 |
++------+
+5 rows in set (0.00 sec)
+
+mysql>

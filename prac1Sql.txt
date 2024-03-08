@@ -1,0 +1,419 @@
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | NO   | PRI | NULL    |       |
+| name    | varchar(100) | NO   |     | NULL    |       |
+| email   | varchar(100) | NO   | UNI | NULL    |       |
+| contact | varchar(100) | NO   | UNI | NULL    |       |
+| salary  | int          | NO   |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add addresss varchar(100);
+Query OK, 0 rows affected (3.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql>
+mysql> desc student;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | NO   | PRI | NULL    |       |
+| name     | varchar(100) | NO   |     | NULL    |       |
+| email    | varchar(100) | NO   | UNI | NULL    |       |
+| contact  | varchar(100) | NO   | UNI | NULL    |       |
+| salary   | int          | NO   |     | NULL    |       |
+| addresss | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student add designation varchar(100),adharno varchar(100),panno varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adharno varchar(100),panno varchar(100)' at line 1
+mysql> alter table student add designation varchar(100);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add adhar varchar(100),panno varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'panno varchar(100)' at line 1
+mysql> alter table student add column adhar varchar(100),panno varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'panno varchar(100)' at line 1
+mysql> alter table student add column(adhar varchar(100),panno varchar(100));
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stutudent;
+ERROR 1146 (42S02): Table 'univercity.stutudent' doesn't exist
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | NO   | PRI | NULL    |       |
+| name        | varchar(100) | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   | UNI | NULL    |       |
+| contact     | varchar(100) | NO   | UNI | NULL    |       |
+| salary      | int          | NO   |     | NULL    |       |
+| addresss    | varchar(100) | YES  |     | NULL    |       |
+| designation | varchar(100) | YES  |     | NULL    |       |
+| adhar       | varchar(100) | YES  |     | NULL    |       |
+| panno       | varchar(100) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> alter drop column adhar;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drop column adhar' at line 1
+mysql> alter drop column (adhar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drop column (adhar)' at line 1
+mysql> alter drop column adhar;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drop column adhar' at line 1
+mysql> alter table student drop column adhar;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student
+    -> ;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | NO   | PRI | NULL    |       |
+| name        | varchar(100) | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   | UNI | NULL    |       |
+| contact     | varchar(100) | NO   | UNI | NULL    |       |
+| salary      | int          | NO   |     | NULL    |       |
+| addresss    | varchar(100) | YES  |     | NULL    |       |
+| designation | varchar(100) | YES  |     | NULL    |       |
+| panno       | varchar(100) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> alter table student rename column salary to sal;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | NO   | PRI | NULL    |       |
+| name        | varchar(100) | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   | UNI | NULL    |       |
+| contact     | varchar(100) | NO   | UNI | NULL    |       |
+| sal         | int          | NO   |     | NULL    |       |
+| addresss    | varchar(100) | YES  |     | NULL    |       |
+| designation | varchar(100) | YES  |     | NULL    |       |
+| panno       | varchar(100) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into student(1,'ram','5587834');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,'ram','5587834')' at line 1
+mysql> insert into table student(1,'ram','5587834');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student(1,'ram','5587834')' at line 1
+mysql> insert into table student(1,'ram',72736239);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student(1,'ram',72736239)' at line 1
+mysql> insert into table student values(1,'ram','736239');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student values(1,'ram','736239')' at line 1
+mysql> insert into table student (id,name,contact) values (1,'ram','6758787');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student (id,name,contact) values (1,'ram','6758787')' at line 1
+mysql> insert into student (id,name,contact) values (1,'ram','6758787');
+ERROR 1364 (HY000): Field 'email' doesn't have a default value
+mysql> insert into student (id,name,contact) values (1,'ram',6758787);
+ERROR 1364 (HY000): Field 'email' doesn't have a default value
+mysql> insert into student(id,name,contact) values (1,'abc','123456');
+ERROR 1364 (HY000): Field 'email' doesn't have a default value
+mysql> insert into student(id,name,email,contact) values (1,'abc','ram@gamil.com','123456');
+ERROR 1364 (HY000): Field 'sal' doesn't have a default value
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (1,'abc','ram@gamil.com','123456','30000','pune','manager','778268');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++----+------+---------------+---------+-------+----------+-------------+--------+
+| id | name | email         | contact | sal   | addresss | designation | panno  |
++----+------+---------------+---------+-------+----------+-------------+--------+
+|  1 | abc  | ram@gamil.com | 123456  | 30000 | pune     | manager     | 778268 |
++----+------+---------------+---------+-------+----------+-------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (2,'ram','aam@gamil.com','123356','40000','mumbai','co','43567789');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (3,'sita','sita@gamil.com','234556','50000','kamothe','ca','7867789');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++----+------+----------------+---------+-------+----------+-------------+----------+
+| id | name | email          | contact | sal   | addresss | designation | panno    |
++----+------+----------------+---------+-------+----------+-------------+----------+
+|  1 | abc  | ram@gamil.com  | 123456  | 30000 | pune     | manager     | 778268   |
+|  2 | ram  | aam@gamil.com  | 123356  | 40000 | mumbai   | co          | 43567789 |
+|  3 | sita | sita@gamil.com | 234556  | 50000 | kamothe  | ca          | 7867789  |
++----+------+----------------+---------+-------+----------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete column from student where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column from student where id=1' at line 1
+mysql> delete from student where id=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++----+------+----------------+---------+-------+----------+-------------+----------+
+| id | name | email          | contact | sal   | addresss | designation | panno    |
++----+------+----------------+---------+-------+----------+-------------+----------+
+|  2 | ram  | aam@gamil.com  | 123356  | 40000 | mumbai   | co          | 43567789 |
+|  3 | sita | sita@gamil.com | 234556  | 50000 | kamothe  | ca          | 7867789  |
++----+------+----------------+---------+-------+----------+-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (3,'lucky','laky@gamil.com','4534556','10000','latur','piun','9867789');
+ERROR 1062 (23000): Duplicate entry '3' for key 'student.PRIMARY'
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (4,'lucky','laky@gamil.com','4534556','10000','latur','piun','9867789');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (5,'shyam','shyam@gamil.com','9034556','20000','kalamboli','employee','9867789');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where name='ram' and not(sal=10000);
++----+------+---------------+---------+-------+----------+-------------+----------+
+| id | name | email         | contact | sal   | addresss | designation | panno    |
++----+------+---------------+---------+-------+----------+-------------+----------+
+|  2 | ram  | aam@gamil.com | 123356  | 40000 | mumbai   | co          | 43567789 |
++----+------+---------------+---------+-------+----------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (1,'ram','ram@gamil.com','0934556','10000','satara','employee','9867789');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (1,'ram','ram@gamil.com','9784556','10000','satara','employee','9867789');
+ERROR 1062 (23000): Duplicate entry '1' for key 'student.PRIMARY'
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (6,'ram','ram@gamil.com','9784556','10000','satara','employee','9867789');
+ERROR 1062 (23000): Duplicate entry 'ram@gamil.com' for key 'student.email'
+mysql> insert into student(id,name,email,contact,sal,addresss,designation,panno) values (6,'ram','aaa@gamil.com','9784556','10000','satara','employee','9867789');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where name='ram'and email='ram@gmail.com;
+    '>
+    '> ;
+    '>
+    '>
+    '>
+    '> jkdf
+    '> select * from student where name='ram'and email='ram@gmail.com';
+    '> ^C
+mysql> select * from student where name='ram'and email='ram@gmail.com';
+Empty set (0.00 sec)
+
+mysql> select * from student;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where name='ram' and email='ram@gmail.com';
+Empty set (0.00 sec)
+
+mysql> select * from student where name='ram' and email='ram@gamil.com';
++----+------+---------------+---------+-------+----------+-------------+---------+
+| id | name | email         | contact | sal   | addresss | designation | panno   |
++----+------+---------------+---------+-------+----------+-------------+---------+
+|  1 | ram  | ram@gamil.com | 0934556 | 10000 | satara   | employee    | 9867789 |
++----+------+---------------+---------+-------+----------+-------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where sal<30000 and not(ram);
+ERROR 1054 (42S22): Unknown column 'ram' in 'where clause'
+mysql> select * from student where sal<30000 and not(name='ram');
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno   |
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789 |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789 |
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where sal>10000 and sal<60000;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where sal>=10000 and sal<60000;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where sal=(10000,20000,30000)and not(name='lucky');
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select * from student where sal=10000 and not(name='lucky');
++----+------+---------------+---------+-------+----------+-------------+---------+
+| id | name | email         | contact | sal   | addresss | designation | panno   |
++----+------+---------------+---------+-------+----------+-------------+---------+
+|  1 | ram  | ram@gamil.com | 0934556 | 10000 | satara   | employee    | 9867789 |
+|  6 | ram  | aaa@gamil.com | 9784556 | 10000 | satara   | employee    | 9867789 |
++----+------+---------------+---------+-------+----------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where salin(10000,20000,30000)and not(name='lucky');
+ERROR 1305 (42000): FUNCTION univercity.salin does not exist
+mysql> select * from student where sal in(10000,20000,30000)and not(name='lucky');
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno   |
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789 |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789 |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789 |
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name in('ram','shyam','sita');
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY id desc;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY id asc;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY sal asc where sal=20000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sal=20000' at line 1
+mysql> select * from student ORDER BY sal asc;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY id asc;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789  |
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  3 | sita  | sita@gamil.com  | 234556  | 50000 | kamothe   | ca          | 7867789  |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789  |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where sal=20000 and ORDER BY id asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY id asc' at line 1
+mysql> select * from student where sal>20000 ORDER BY id asc;
++----+------+----------------+---------+-------+----------+-------------+----------+
+| id | name | email          | contact | sal   | addresss | designation | panno    |
++----+------+----------------+---------+-------+----------+-------------+----------+
+|  2 | ram  | aam@gamil.com  | 123356  | 40000 | mumbai   | co          | 43567789 |
+|  3 | sita | sita@gamil.com | 234556  | 50000 | kamothe  | ca          | 7867789  |
++----+------+----------------+---------+-------+----------+-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where sal in(10000,20000,30000) ORDER BY id asc;
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno   |
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+|  1 | ram   | ram@gamil.com   | 0934556 | 10000 | satara    | employee    | 9867789 |
+|  4 | lucky | laky@gamil.com  | 4534556 | 10000 | latur     | piun        | 9867789 |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789 |
+|  6 | ram   | aaa@gamil.com   | 9784556 | 10000 | satara    | employee    | 9867789 |
++----+-------+-----------------+---------+-------+-----------+-------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where sal>10000 and sal<50000 ORDER BY name asc;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where sal>=10000 and sal=<50000 ORDER BY name asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=<50000 ORDER BY name asc' at line 1
+mysql> select * from student where sal>10000 and sal<50000 ORDER BY name asc;
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+| id | name  | email           | contact | sal   | addresss  | designation | panno    |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+|  2 | ram   | aam@gamil.com   | 123356  | 40000 | mumbai    | co          | 43567789 |
+|  5 | shyam | shyam@gamil.com | 9034556 | 20000 | kalamboli | employee    | 9867789  |
++----+-------+-----------------+---------+-------+-----------+-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql>

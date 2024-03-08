@@ -1,0 +1,53 @@
+
+mysql> use demo;
+Database changed
+mysql> create table abc(id int(5), name varchar(100), email varchar(100),contact varchar(100));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> desc abc;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | YES  |     | NULL    |       |
+| name    | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
+| contact | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> delimiter /
+mysql> create procedure yogita(id int(5), name varchar(100), email varchar(100), contact varchar(100))
+    -> begin
+    -> insert into abc values(id, name, email,contact);
+    -> end
+    -> /
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> delimiter /
+mysql> call yogita('1','a','a@','1234');
+    -> /
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from abc;
+    -> /
++------+------+-------+---------+
+| id   | name | email | contact |
++------+------+-------+---------+
+|    1 | a    | a@    | 1234    |
++------+------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> delimiter /
+mysql> call yogita (2,'b','b@','1223455');
+    -> /
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from abc;
+    -> /
++------+------+-------+---------+
+| id   | name | email | contact |
++------+------+-------+---------+
+|    1 | a    | a@    | 1234    |
+|    2 | b    | b@    | 1223455 |
++------+------+-------+---------+
+2 rows in set (0.00 sec)

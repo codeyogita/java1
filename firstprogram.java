@@ -1,0 +1,14 @@
+public class firstprogram
+{
+public static void main(String yogita[])
+{
+  int a=10,b=20,c,c1,c2;
+   
+    c=a+b;
+    c1=a*b;
+    c2=a-b;
+
+System.out.println("arithmatic operation"+c+"\t"+c1+"\t"+c2);
+
+}
+}
